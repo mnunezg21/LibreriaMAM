@@ -1,0 +1,44 @@
+﻿@using LibreriaV6.Modelo
+@model List<LineaAuxiliar>
+@{
+    ViewBag.Title = "detalleFactura";
+    Layout = "~/Views/Plantilla/Plantilla.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>VideoJuego</th>
+                        <th>Cantidad</th>
+                        <th class="text-center">Precio</th>
+                        <th class="text-center">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        double total = 0;
+                        foreach (LineaAuxiliar linea in Model) {
+                            total = total + linea.subTotal();
+
+                            <tr>
+                                <td class="col-sm-8 col-md-6">
+                                    <span class="h5">@Html.ActionLink(linea.Libro.Titulo + " - " + @linea.Libro.Autor, "verLibro", "Libro", new { CodLibro = linea.Libro.CodLibro }, new { @class="text-dark"})</span>
+                                </td>
+                                <td class="col-sm-1 col-md-1 text-center">@linea.Cantidad</td>
+                                <td class="col-sm-1 col-md-1 text-center">@String.Format("{0:0.00}", Double.Parse(linea.Libro.Precio)) €</td>
+                                <td class="col-sm-1 col-md-1 text-center">@String.Format("{0:0.00}", linea.subTotal()) €</td>
+                            </tr>
+                        }
+                    }
+
+                    <tr>
+                        <td colspan="4" class="text-right" style="font-size:20px">TOTAL: <span class="font-weight-bold pl-2">@String.Format("{0:0.00}", total) €</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

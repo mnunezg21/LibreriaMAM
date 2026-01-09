@@ -1,0 +1,69 @@
+﻿@using LibreriaV6.Modelo
+@{
+    ViewBag.Title = "modificarLibro";
+    TLibro libro = Model[0];
+}
+
+<h3 style="margin-bottom: 25px; text-align: center;">Modificar libro</h3>
+
+<div class="container">
+    <div class="col-md-10">
+        <div class="form-area">
+            <form class="form" method="post">
+                <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <input name="Titulo" type="text" maxlength="30" required="" class="form-control" placeholder="Título" id="titulo" value="@libro.Titulo" />
+                </div>
+                <div class="form-group">
+                    <label for="autor">Autor</label>
+                    <input name="Desarrollador" type="text" maxlength="30" minlength="5" required="" class="form-control" placeholder="Autor" id="autor" value="@libro.Autor" />
+                </div>
+                <div class="form-group">
+                    <label for="genero">Género</label>
+                    <select name="Genero" class="form-control" id="genero">
+                        @foreach (TGenero genero in Model[1])
+                        {
+                            <option value="@genero.Genero">@genero.Genero</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fechapublicacion">Fecha de publicación</label>
+                    <input name="FechaPublicacion" type="text" required="" class="form-control" placeholder="Fecha de publicacion" id="fechalanzamiento" value="@libro.FechaPublicacion" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="paginas">Páginas</label>
+                    <input name="Páginas" type="text" required="" class="form-control" placeholder="Numero de Páginas" id="paginas" value="@libro.Paginas" />
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input name="Precio" type="text" required="" class="form-control" placeholder="Precio" id="precio" value="@libro.Precio" />
+                </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <input name="Imagen" type="text" required="" class="form-control" placeholder="Imagen" id="imagen" value="@libro.Imagen" />
+                </div>
+
+                <fieldset class="form-group">
+                    <legend>Formato:</legend>
+                    <input type="checkbox" name="Formatouno" value="Multijugador" @(libro.Formatouno == "N/A" ? "" : "checked") />Fantasía<br>
+                    <input type="checkbox" name="Formatodos" value="Novela Histórica" @(libro.Formatodos == "N/A" ? "" : "checked") />Novela Histórica<br>
+                    <input type="checkbox" name="Formatotres" value="Terror" @(libro.Formatotres == "N/A" ? "" : "checked") />Terror<br>
+                </fieldset>
+                <fieldset class="form-group">
+                    <legend>Estado: </legend>
+                    <input type="radio" name="Estado" value="Nuevo" @(libro.Estado == "Nuevo" ? "checked" : "") />Nuevo<br />
+                    <input type="radio" name="Estado" value="Segunda mano" @(libro.Estado == "SegundaMano" ? "checked" : "") />Segunda mano<br />
+                </fieldset>
+                <br />
+
+                <div class="submit">
+                    <input type="submit" value="Modificar datos" class="btn btn-primary pull-right" id="button-blue" />
+                    <div class="ease"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

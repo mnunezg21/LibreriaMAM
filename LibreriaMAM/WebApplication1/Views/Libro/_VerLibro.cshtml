@@ -1,0 +1,43 @@
+﻿@model LibreriaV6.Modelo.TLibro
+@{
+    ViewBag.Title = "verVideoJuego";
+    Layout = "~/Views/Plantilla/Plantilla.cshtml";
+}
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-12 col-lg-7 col-xl-5 pr-3">
+            <div class="row justify-content-center">
+                <h2> @Model.Titulo </h2>
+            </div>
+            <div class="row justify-content-center my-2">
+                <img src="@Model.Imagen" width="350" height="350" />
+            </div>
+            <div class="row justify-content-center mt-3">
+                <label class="col-6 font-weight-bold text-right">Título</label>
+                <span class="prop-border col-6 text-left">@Model.Titulo</span>
+            </div>
+            <div class="row">
+                <label class="col-6 font-weight-bold text-right">Autor</label>
+                <span class="prop-border col-6 text-left">@Model.Autor</span>
+            </div>
+            <div class="row">
+                <label class="col-6 font-weight-bold text-right">Fecha de publicación</label>
+                <span class="prop-border col-6 text-left">@Model.FechaPublicacion</span>
+            </div>
+            <div class="row">
+                <label class="col-6 font-weight-bold text-right">Páginas</label>
+                <span class="prop-border col-6 text-left">@Model.Paginas &euro;</span>
+            </div>
+            <div class="row">
+                <label class="col-6 font-weight-bold text-right">Precio</label>
+                <span class="prop-border col-6 text-left">@Model.Precio &euro;</span>
+            </div>
+            <div class="row">
+                <label class="col-6 font-weight-bold text-right">Género</label>
+                <span class="prop-border col-6 text-left">@Model.Genero</span>
+            </div>
+             <!--PONER LO DE LOS FORMATOS, EL ESTADO Y LA IMAGEN A LA IZQUIERDA DE TODA LA DESCRIPCION-->>
+        </div></div>
+</div>
+
+<script src="~/Content/js/_VerLibro.js"></script>

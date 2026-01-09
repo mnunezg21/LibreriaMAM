@@ -1,0 +1,32 @@
+﻿@using LibreriaV6.Modelo;
+@model List<object>
+@{
+    ViewBag.Title = "verFacturas";
+    Layout = "~/Views/Plantilla/Plantilla.cshtml";
+}
+<h2 class="form-group text-center mt-2">Tus facturas</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="modal-body row" id="modal-champions-body">
+            @foreach (TFactura factura in Model) {
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <img src="/images/logopdf.png" alt="Logo" width="100" height="100">
+                    </div>
+                    <div class="col-12 text-center">
+                        @Html.ActionLink("Factura del " + @factura.FechaFactura, "detalleFactura", "Usuario", new { CodFactura = @factura.CodFactura }, new { @class = "text-dark" })
+                    </div>
+                </div>
+            }
+            <span class="alert alert-danger w-100" id="span">Usted no tiene ninguna factura.</span>
+        </div>
+    </div>
+    <script>
+    $totalArray = @Model.Count;
+    if ($totalArray == 0) {
+        document.getElementById("span").style.display = "inherit";
+    } else {
+        document.getElementById("span").style.display = "none";
+    }
+    </script>

@@ -1,0 +1,78 @@
+﻿@model List<object>
+@using LibreriaV6.Modelo
+
+<div class="container-fluid mb-3">
+    <h3 class="mt-3 my-2 text-center">Añadir libro</h3>
+    <p class="text-left alert alert-success my-2" role="alert"><span id="mensaje"></span></p>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <form class="form" method="post" id="my_form" action="javascript:Enviar()">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input name="Titulo" type="text" maxlength="30" required="" class="form-control" placeholder="Título" id="titulo" />
+                </div>
+                <div class="form-group">
+                    <label for="desarrollador">Autor</label>
+                    <input name="Desarrollador" type="text" maxlength="30" minlength="5" required="" class="form-control" placeholder="Autor" id="autor" />
+                </div>
+                <div class="form-group">
+                    <label for="genero">Género</label>
+                    <select name="Genero" class="form-control" id="genero">
+                        @foreach (TGenero genero in Model)
+                        {
+                            <option value="@genero.Genero">@genero.Genero</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fechalanzamiento">Fecha de publicación</label>
+                    <input name="FechaPublicacion" type="text" required="" class="form-control" placeholder="Fecha de publicación" id="fechapublicacion" />
+                </div>
+                <div class="form-group">
+                    <label for="paginas">Páginas</label>
+                    <input name="Paginas" type="text" required="" class="form-control" placeholder="Paginas" id="paginas" />
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input name="Precio" type="text" required="" class="form-control" placeholder="Precio" id="precio" />
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <input name="Imagen" type="text" required="" class="form-control" placeholder="Imagen" id="imagen" />
+                </div>
+                <!--Modificar y poner las caracteristicas correspondientes-->asdfasfasdf
+                <div class="row form-group">
+                    <div class="col-12 col-md-6">
+                        <fieldset>
+                            <legend>Características:</legend>
+                            <input type="checkbox" name="Formatouno" value="Multijugador" id="multijugador" /> Multijugador <br>
+                            <input type="checkbox" name="Formatodos" value="Cooperativo" id="cooperativo" /> Cooperativo<br>
+                            <input type="checkbox" name="Formatotres" value="Micropagos" id="micropagos" /> Micropagos<br>
+                        </fieldset>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <fieldset>
+                            <legend>Estado: </legend>
+                            <input type="radio" name="Estado" value="Nuevo" id="nuevo" /> Nuevo<br />
+                            <input type="radio" name="Estado" value="Segunda mano" id="segundaMano" /> Segunda mano<br />
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row justify-content-end mt-3 w-100">
+                    <div class="submit pr-2">
+                        <input type="reset" value="Reiniciar Campos" class="btn btn-danger pull-right" id="button-reset">
+                        <div class="ease"></div>
+                    </div>
+                    <div class="submit pl-2">
+                        <input type="submit" id="botonEnviar" value="Insertar" class="btn btn-primary pull-right" />
+                        <div class="ease"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/js/addLibro.js"></script>

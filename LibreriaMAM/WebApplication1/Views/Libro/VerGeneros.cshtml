@@ -1,0 +1,31 @@
+﻿@using LibreriaV6.Comun;
+@using LibreriaV6.Modelo;
+@using LibreriaV6.Negocio;
+
+@{
+    ViewBag.Title = "VerGeneros";
+    Layout = "~/Views/Plantilla/Plantilla.cshtml";
+    ControlAccesoDAO<TGenero> control = new ControlAccesoDAO<TGenero>();
+    List<TGenero> generos = new List<TGenero>();
+    foreach (var item in control.Obtener(new TGenero().GetType())) {
+        generos.Add((TGenero)item);
+    }
+}
+
+
+<div class="container-fluid">
+    <div class="container" id="divGeneros">
+        <div id="totalgeneros" class="mt-3 text-center"> <span class="text-center" style="font-size:30px"> Total de géneros: @generos.Count </span> </div>
+
+        <div class="modal-body row justify-content-center" id="modal-champions-body">
+            @foreach (TGenero genero in @generos) {
+                <div id="@genero.Genero" class="text-center p-2">
+                    <div><img alt="Portada" src=@genero.Imagen width="200" height="200"></div>
+                    <h4><i class="fas fa-bug"></i> @Html.ActionLink(@genero.Genero, "ConsultarFiltro", "Libro", new { genero = @genero.Genero }, new { @class = "text-primary" })</h4>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/js/Consultar.js"></script>

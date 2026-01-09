@@ -1,0 +1,147 @@
+﻿@using LibreriaV6.Modelo
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gestor de libros @ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/footer.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body style="background-image:url('/images/fondo.jpg')">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+            <div class="navbar-collapse collapse w-100 order-0 dual-collapse2" id="navbarTogglerDemo02">
+                <a class="navbar-brand mr-4" href="/">Gestor de libros</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Gestión</a>
+                        <div class="dropdown-menu p-2">
+                            @{
+                                if (Session["usuario"] != null && ((TUsuario)Session["usuario"]).Rol.Equals("admin")) {
+                                    <div class="dropdown-item"><i class="fas fa-plus-square"></i> @Html.ActionLink("Añadir libro", "addLibro", "Libro")</div>
+                                }
+                            }
+                            <div class="dropdown-item"><i class="fab fa-readme"></i> @Html.ActionLink("Consultar libros", "Consultar", "Libro")</div>
+                            <div class="dropdown-item"><i class="fas fa-bug"></i> @Html.ActionLink("Consultar géneros", "VerGeneros", "Libro")</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-1 dual-collapse2" id="navbarTogglerDemo02">
+                <ul class="navbar-nav ml-auto pr-2">
+                    <li>
+                        @using (Html.BeginForm("Buscar", "Libro")) {
+                            <div class="row mr-4">
+                                <div class="col-auto p-0">
+                                    @Html.TextBox("buscar", "", new { @class = "form-control" })<!--el segundo esta vacio porque se refiere a la etiqueta value-->
+                                </div>
+                                <div class="col-auto p-0 pl-1">
+                                    <input type="submit" class="btn btn-secondary" value="Buscar" />
+                                </div>
+                            </div>}
+                    </li>
+                    @{
+                        if (Session["usuario"] == null) {
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fas fa-sign-in-alt"></i> Login <span class="caret"></span></a>
+                                <ul id="login-dp" class="dropdown-menu p-2" style="right: 0; left: auto; width:20em;">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form" method="post" action="javascript:Login()">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="userLoginInput">Usuario</label>
+                                                        <input name="Nick" type="text" class="form-control" id="userLoginInput" placeholder="Introduce Usuario" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="passLoginInput">Contraseña</label>
+                                                        <input name="Pass" type="password" class="form-control" id="passLoginInput" placeholder="Introduce Contraseña" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" id="botonLogin" value="Loguearse" class="btn btn-primary btn-block" />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user-plus"></i> Registro <span class="caret"></span></a>
+                                <ul id="login-dp" class="dropdown-menu p-2" style="right: 0; left: auto; width:20em;">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form" role="form" method="post" action="javascript:cargarRegistro()" accept-charset="UTF-8" id="login-nav">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="userRegisInput">Usuario</label>
+                                                        <input name="Nick" type="text" class="form-control" id="userRegisInput" placeholder="Introduce Usuario" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="passRegisInput">Contraseña</label>
+                                                        <input name="Pass" type="password" class="form-control" id="passRegisInput" placeholder="Introduce Contraseña" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="passRegisConfInput">Confirmar Contraseña</label>
+                                                        <input name="PassConfirm" type="password" class="form-control" id="passRegisConfInput" placeholder="Confirma Contraseña" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary btn-block" id="btnRegistrar">Registrarse</button>
+                                                    </div>
+                                                    <div class="alert alert-danger d-none" id="passNoCoinciden">
+                                                        <span class="text-center " style="font-size: 10px;"><i class="fas fa-exclamation-circle"></i> Las contraseñas no coinciden.</span>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        } else {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i> Perfil</a>
+                                <div class="dropdown-menu p-2" style="right: 0; left: auto;">
+                                    @if (((TUsuario)Session["usuario"]).Rol.Equals("user")) {
+                                        <div class="dropdown-item"><i class="fas fa-receipt"></i> @Html.ActionLink("Ver facturas", "verFacturas", "Usuario")</div>
+                                    }
+                                    <div class="dropdown-item"><i class="fas fa-sign-out-alt"></i> @Html.ActionLink("Cerrar sesión", "CerrarSesion", "Inicio")</div>
+                                </div>
+                            </li>
+
+                            if (((TUsuario)Session["usuario"]).Rol.Equals("user")) {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart"></i> Carrito <span id="unids"></span></a>
+                                    <div class="dropdown-menu p-2" style='right: 0; left: auto; width: 20em'>
+                                        <ul id="carro" class="list-group"></ul> <hr />
+                                        <p class="text-center">Total: <b><span id="t"></span>&euro;</b></p>
+                                        <form action="/VideoJuego/CarroCompra" method="post">
+                                            <button class="btn btn-xs btn-success btn-block">Ver Carrito <i class="fas fa-money-bill-wave-alt"></i></button>
+                                        </form>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <script src="~/Content/js/Plantilla.js"></script>
+    <script src="~/Content/js/login.js"></script>
+    <script src="~/Content/js/registro.js"></script>
+    @RenderBody()
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e684f4d22b.js" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/LibreriaScripts")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
