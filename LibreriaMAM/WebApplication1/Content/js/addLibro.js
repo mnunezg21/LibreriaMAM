@@ -20,16 +20,16 @@ function cargarLibro(libro) {
     libro.FechaLanzamiento = document.getElementById("fechalanzamiento").value;
     libro.Precio = document.getElementById("precio").value;
     libro.Imagen = document.getElementById("imagen").value;
-    if (document.getElementById('multijugador').checked)
-        libro.Formatouno = document.getElementById("multijugador").value;
-    if (document.getElementById('cooperativo').checked)
-        libro.Formatodos = document.getElementById("cooperativo").value;
-    if (document.getElementById('micropagos').checked)
-        libro.Formatotres = document.getElementById("micropagos").value;
+    if (document.getElementById('tapaDura').checked)
+        libro.Formatouno = document.getElementById("tapaDura").value;
+    if (document.getElementById('tapaBlanda').checked)
+        libro.Formatodos = document.getElementById("tapaBlanda").value;
+    if (document.getElementById('ebook').checked)
+        libro.Formatotres = document.getElementById("ebook").value;
     if (document.getElementById("nuevo").checked)
         libro.Estado = document.getElementById("nuevo").value;
-    else if (document.getElementById("remaster").checked)
-        libro.Estado = document.getElementById("remaster").value;
+    else if (document.getElementById("segundaMano").checked)
+        libro.Estado = document.getElementById("segundaMano").value;
     return libro;
 }
 

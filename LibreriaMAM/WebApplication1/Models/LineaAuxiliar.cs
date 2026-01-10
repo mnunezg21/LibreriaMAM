@@ -2,13 +2,13 @@
 
     public class LineaAuxiliar {
         public string CodFactura { get; set; }
-        public TLibro VideoJuego { get; set; }
+        public TLibro Libro { get; set; }
         public string Cantidad { get; set; }
         public string Total { get; set; }
 
-        public LineaAuxiliar(string codFactura, TLibro videojuego, string cantidad, string total) {
+        public LineaAuxiliar(string codFactura, TLibro libro, string cantidad, string total) {
             CodFactura = codFactura;
-            VideoJuego = videojuego;
+            Libro = libro;
             Cantidad = cantidad;
             Total = total;
         }

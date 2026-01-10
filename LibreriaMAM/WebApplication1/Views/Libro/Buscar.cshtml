@@ -6,23 +6,23 @@
 
 
 <div class="container-fluid">
-    <div class="container" id="divVideojuegos">
-        <div id="totalvideojuegos" class="mt-3 text-center"> <span class="text-center" style="font-size:30px"> Total de videojuegos: @Model.Count </span> </div>
+    <div class="container" id="divLibro">
+        <div id="totallibros" class="mt-3 text-center"> <span class="text-center" style="font-size:30px"> Total de libros: @Model.Count </span> </div>
 
         <div class="modal-body row justify-content-center" id="modal-champions-body">
-            @foreach (TVideoJuego videojuego in Model) {
-                <div id="@videojuego.CodVideoJuego" class="p-2">
-                    <div><img alt="Portada" src=@videojuego.Imagen width="200" height="200"></div>
-                    <div class="text-center">@Html.ActionLink(videojuego.Titulo, "verVideoJuego", "VideoJuego", new { CodVideoJuego = videojuego.CodVideoJuego }, new { @class = "text-dark" })</div>
+            @foreach (TLibro libro in Model) {
+                <div id="@libro.CodLibro" class="p-2">
+                    <div><img alt="Portada" src=@libro.Imagen width="200" height="200"></div>
+                    <div class="text-center">@Html.ActionLink(libro.Titulo, "verLibro", "Libro", new { CodLibro = libro.CodLibro }, new { @class = "text-dark" })</div>
                     @{ if (Session["usuario"] != null && ((TUsuario)Session["usuario"]).Rol.Equals("admin")) {
-                            <div class="ml-2"><i class="fas fa-edit"></i> @Html.ActionLink("Editar", "modificarVideoJuego", "VideoJuego", new { CodVideoJuego = videojuego.CodVideoJuego }, null)</div>
+                            <div class="ml-2"><i class="fas fa-edit"></i> @Html.ActionLink("Editar", "modificarLibro", "Libro", new { CodLibro = libro.CodLibro }, null)</div>
                             <div class="ml-2">
                                 <i class="fas fa-trash-alt"></i>
-                                @Ajax.ActionLink("Borrar", "borrarVideoJuego", "VideoJuego", new { CodVideoJuego = videojuego.CodVideoJuego }, new AjaxOptions() {
+                                @Ajax.ActionLink("Borrar", "borrarVideoJuego", "VideoJuego", new { CodLibro = libro.CodLibro }, new AjaxOptions() {
                                     HttpMethod = "GET",
                                     InsertionMode = InsertionMode.Replace,
-                                    UpdateTargetId = "totalvideojuegos",
-                                }, new { id = videojuego.CodVideoJuego, onclick = "borrar(id);" })
+                                    UpdateTargetId = "totallibros",
+                                }, new { id = libro.CodLibro, onclick = "borrar(id);" })
                             </div>
                         }
                     }

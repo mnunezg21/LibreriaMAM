@@ -48,7 +48,7 @@ function renderizarCarrito(carrito) {
         let td5 = document.createElement('td');
         td1.textContent = `${parseInt(miItem[0].Cantidad)}`;
         td2.textContent = `${miItem[0]['Titulo']}`;
-        td3.textContent = `${miItem[0]['Desarrollador']}`;
+        td3.textContent = `${miItem[0]['Autor']}`;
         td4.textContent = `${miItem[0]['Precio']}€`;
         let miBoton = document.createElement('button');
         miBoton.classList.add('btn', 'btn-danger', 'mx-5');

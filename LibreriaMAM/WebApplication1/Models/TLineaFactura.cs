@@ -2,13 +2,13 @@
 
     public class TLineaFactura {
         public string CodFactura { get; set; }
-        public string VideoJuego { get; set; }
+        public string Libro { get; set; }
         public string Cantidad { get; set; }
         public string Total { get; set; }
 
-        public TLineaFactura(string codFactura, string videojuego, string cantidad, string total) {
+        public TLineaFactura(string codFactura, string libro, string cantidad, string total) {
             CodFactura = codFactura;
-            VideoJuego = videojuego;
+            Libro = libro;
             Cantidad = cantidad;
             Total = total;
         }
@@ -21,11 +21,11 @@
         }
 
         public override string ToString() {
-            return VideoJuego + " " + Cantidad + " " + Total;
+            return Libro + " " + Cantidad + " " + Total;
         }
 
         public override bool Equals(object obj) {
-            return ((TLineaFactura)obj).VideoJuego == VideoJuego;
+            return ((TLineaFactura)obj).Libro == Libro;
         }
     }
 }

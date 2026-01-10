@@ -1,4 +1,4 @@
-﻿@model List<LibreriaV6.Modelo.TVideoJuego>
+﻿@model List<LibreriaV6.Modelo.TLibro>
 
 @{
     ViewBag.Title = "Carro";
@@ -17,18 +17,18 @@
                         <tr>
                             <td></td>
                             <td>Título</td>
-                            <td>Desarrollador</td>
+                            <td>Autor</td>
                             <td>Añadir</td>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var videojuego in Model) {
+                        @foreach (var libro in Model) {
                             <tr>
-                                <td><img src="@videojuego.Imagen" width="70" height="70" /></td>
-                                <td>@videojuego.Titulo</td>
-                                <td>@videojuego.Desarrollador</td>
+                                <td><img src="@libro.Imagen" width="70" height="70" /></td>
+                                <td>@libro.Titulo</td>
+                                <td>@libro.Autor</td>
                                 <td>
-                                    @Ajax.ActionLink("Añadir carro", "obtenerVideoJuegos", "VideoJuego", new { CodVideoJuego = @videojuego.CodVideoJuego }, new AjaxOptions() {
+                                    @Ajax.ActionLink("Añadir carro", "obtenerLibros", "Libro", new { CodVideoJuego = libro.CodLibro }, new AjaxOptions() {
                                         HttpMethod = "POST",
                                         OnSuccess = "success",
                                     }, new { @class = "btn btn-outline-primary" })
@@ -49,7 +49,7 @@
                                 <tr>
                                     <td>Cantidad</td>
                                     <td>Título</td>
-                                    <td>Desarrollador</td>
+                                    <td>Autor</td>
                                     <td>Precio</td>
                                     <td>Borrar</td>
                                 </tr>

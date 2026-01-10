@@ -4,20 +4,20 @@ namespace LibreriaV6.Modelo {
 
     public class TLinea {
         public string CodFactura { get; set; }
-        public string VideoJuego { get; set; }
+        public string Libro { get; set; }
         public string Cantidad { get; set; }
         public string Total { get; set; }
 
-        public TLinea(string codFactura, string videojuego, string cantidad, string total) {
+        public TLinea(string codFactura, string libro, string cantidad, string total) {
             this.CodFactura = codFactura;
-            this.VideoJuego = VideoJuego;
+            this.Libro = libro;
             this.Cantidad = cantidad;
             this.Total = total;
         }
 
-        public TLinea(string videojuego, string cantidad, string total) {
+        public TLinea(string libro, string cantidad, string total) {
             this.CodFactura = Util.GenerarCodigo(this.GetType());
-            this.VideoJuego = videojuego;
+            this.Libro = libro;
             this.Cantidad = cantidad;
             this.Total = total;
         }
@@ -26,7 +26,7 @@ namespace LibreriaV6.Modelo {
         }
 
         public override string ToString() {
-            return CodFactura + ": " + VideoJuego.ToUpper();
+            return CodFactura + ": " + Libro.ToUpper();
         }
     }
 }
