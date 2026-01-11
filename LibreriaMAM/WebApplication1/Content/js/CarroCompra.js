@@ -21,8 +21,8 @@ function anyadirCarrito(dato) {
     } else {
         var cantidad = 1;
         for (var i = 0; i < carrito.length; i++) {
-            var codVideoJuego = carrito[i][0].CodVideoJuego;
-            if (codVideoJuego == dato[0].CodVideoJuego && !encontrado) {
+            var codLibro = carrito[i][0].CodLibro;
+            if (codLibro == dato[0].CodLibro && !encontrado) {
                 carrito[i][0].Cantidad++;
                 encontrado = true;
             }
@@ -91,7 +91,7 @@ function success(data) {
 }
 
 function comprar() {
-    var uri = '/VideoJuego/comprar';
+    var uri = '/Libro/comprar';
     var lineas = lineasFactura(carrito);
     $.ajax({
         url: uri,
@@ -116,7 +116,7 @@ function lineasFactura(carrito) {
     for (let miItem of carrito) {
         lf = {};
         lf.CodFactura = "";
-        lf.VideoJuego = miItem[0].CodVideoJuego;
+        lf.Libro = miItem[0].CodLibro;
         lf.Cantidad = miItem[0].Cantidad;
         lf.Total = miItem[0].Precio * lf.Cantidad;
         lineas.push(lf);

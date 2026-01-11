@@ -28,7 +28,7 @@
                                 <td>@libro.Titulo</td>
                                 <td>@libro.Autor</td>
                                 <td>
-                                    @Ajax.ActionLink("Añadir carro", "obtenerLibros", "Libro", new { CodVideoJuego = libro.CodLibro }, new AjaxOptions() {
+                                    @Ajax.ActionLink("Añadir carro", "obtenerLibros", "Libro", new { CodLibro = libro.CodLibro }, new AjaxOptions() {
                                         HttpMethod = "POST",
                                         OnSuccess = "success",
                                     }, new { @class = "btn btn-outline-primary" })

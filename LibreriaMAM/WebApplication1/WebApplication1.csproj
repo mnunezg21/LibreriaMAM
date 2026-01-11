@@ -231,7 +231,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\js\registro.js" />
-    <Content Include="Content\js\_VerLibro.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
