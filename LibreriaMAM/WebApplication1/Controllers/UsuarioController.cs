@@ -15,7 +15,7 @@ namespace LibreriaV6.Controllers {
         public ActionResult detalleFactura(string CodFactura) {
             List<LineaAuxiliar> listaVentas = new List<LineaAuxiliar>();
             foreach (TLineaFactura lineaFactura in control.Buscar(new TLineaFactura().GetType(), "CodFactura", CodFactura)) {
-                listaVentas.Add(new LineaAuxiliar(lineaFactura.CodFactura, (control.Buscar(new TLibro().GetType(), lineaFactura.VideoJuego) as TLibro), lineaFactura.Cantidad, lineaFactura.Total));
+                listaVentas.Add(new LineaAuxiliar(lineaFactura.CodFactura, (control.Buscar(new TLibro().GetType(), lineaFactura.Libro) as TLibro), lineaFactura.Cantidad, lineaFactura.Total));
             }
 
             return View(listaVentas);

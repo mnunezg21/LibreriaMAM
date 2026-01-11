@@ -33,7 +33,7 @@ namespace LibreriaV6.Modelo {
             this.Borrado = borrado;
         }
 
-        public TLibro(string autor, string titulo, string genero, string fechaPublicacion, string paginas, string precio, string formatouno, string formatodos, string formatotres, string estado, string imagen, string paginas) {
+        public TLibro(string autor, string titulo, string genero, string fechaPublicacion, string paginas, string precio, string formatouno, string formatodos, string formatotres, string estado, string imagen) {
             this.CodLibro = Util.GenerarCodigo(this.GetType());
             this.Autor = autor;
             this.Titulo = titulo;

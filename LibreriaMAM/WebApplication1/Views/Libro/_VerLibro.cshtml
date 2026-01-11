@@ -1,41 +1,75 @@
 ﻿@model LibreriaV6.Modelo.TLibro
 @{
-    ViewBag.Title = "verLibro";
+    ViewBag.Title = "Detalles del Libro";
     Layout = "~/Views/Plantilla/Plantilla.cshtml";
 }
-<div class="container">
-    <div class="row mt-3">
-        <div class="col-12 col-lg-7 col-xl-5 pr-3">
-            <div class="row justify-content-center">
-                <h2> @Model.Titulo </h2>
+
+<div class="container bg-light p-4 mt-5 rounded shadow">
+    <div class="row">
+        <div class="col-12 col-md-5 d-flex align-items-center justify-content-center">
+            <img src="@Model.Imagen" class="img-fluid rounded shadow-sm" alt="Portada de @Model.Titulo" style="max-height: 500px;" />
+        </div>
+
+        <div class="col-12 col-md-7">
+            <h2 class="display-4 text-primary">@Model.Titulo</h2>
+            <p class="h4 text-secondary mb-4">por @Model.Autor</p>
+            <hr />
+
+            <div class="row mb-2">
+                <div class="col-5 font-weight-bold">Género:</div>
+                <div class="col-7">@Model.Genero</div>
             </div>
-            <div class="row justify-content-center my-2">
-                <img src="@Model.Imagen" width="350" height="350" />
+
+            <div class="row mb-2">
+                <div class="col-5 font-weight-bold">Fecha de Publicación:</div>
+                <div class="col-7">@Model.FechaPublicacion</div>
             </div>
-            <div class="row justify-content-center mt-3">
-                <label class="col-6 font-weight-bold text-right">Título</label>
-                <span class="prop-border col-6 text-left">@Model.Titulo</span>
+
+            <div class="row mb-2">
+                <div class="col-5 font-weight-bold">Número de Páginas:</div>
+                <div class="col-7">@Model.Paginas</div>
             </div>
-            <div class="row">
-                <label class="col-6 font-weight-bold text-right">Autor</label>
-                <span class="prop-border col-6 text-left">@Model.Autor</span>
+
+            <div class="row mb-2">
+                <div class="col-5 font-weight-bold">Estado:</div>
+                <div class="col-7">
+                    <span class="badge @(Model.Estado == "Nuevo" ? "badge-success" : "badge-warning") p-2">
+                        @Model.Estado
+                    </span>
+                </div>
             </div>
-            <div class="row">
-                <label class="col-6 font-weight-bold text-right">Fecha de publicación</label>
-                <span class="prop-border col-6 text-left">@Model.FechaPublicacion</span>
+
+            <div class="row mb-2">
+                <div class="col-5 font-weight-bold">Formatos Disponibles:</div>
+                <div class="col-7">
+                    <ul class="list-unstyled">
+                        @if (Model.Formatouno != "N/A")
+                        {
+                            <li><i class="fas fa-check-circle text-success"></i> @Model.Formatouno</li>
+}
+                        @if (Model.Formatodos != "N/A")
+                        {
+                            <li><i class="fas fa-check-circle text-success"></i> @Model.Formatodos</li>
+}
+                        @if (Model.Formatotres != "N/A")
+                        {
+                            <li><i class="fas fa-check-circle text-success"></i> @Model.Formatotres</li>
+}
+                    </ul>
+                </div>
             </div>
-            <div class="row">
-                <label class="col-6 font-weight-bold text-right">Páginas</label>
-                <span class="prop-border col-6 text-left">@Model.Paginas &euro;</span>
+
+            <hr />
+            <div class="row align-items-center mt-4">
+                <div class="col-6">
+                    <h3 class="text-dark">Precio: <span class="text-success">@Model.Precio €</span></h3>
+                </div>
+                <div class="col-6 text-right">
+                    <a href="@Url.Action("Consultar", "Libro")" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                </div>
             </div>
-            <div class="row">
-                <label class="col-6 font-weight-bold text-right">Precio</label>
-                <span class="prop-border col-6 text-left">@Model.Precio &euro;</span>
-            </div>
-            <div class="row">
-                <label class="col-6 font-weight-bold text-right">Género</label>
-                <span class="prop-border col-6 text-left">@Model.Genero</span>
-            </div>
-             <!--PONER LO DE LOS FORMATO y EL ESTADO | LA IMAGEN A LA IZQUIERDA DE TODA LA DESCRIPCION-->>
-        </div></div>
+        </div>
+    </div>
 </div>

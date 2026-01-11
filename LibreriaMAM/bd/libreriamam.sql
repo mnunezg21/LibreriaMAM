@@ -57,7 +57,7 @@ CREATE TABLE `tgenero` (
 INSERT INTO `tgenero` (`Genero`, `Imagen`, `Borrado`) VALUES
 ('Fantasía', 'https://imagessl4.casadellibro.com/a/l/s7/64/9791387629564.webp', '0'),
 ('Novela Histórica', 'https://imagessl6.casadellibro.com/a/l/t5/01/9788466682701.jpg', '0'),
-('Terror', 'https://imagessl2.casadellibro.com/a/l/t5/97/9788418431197.jpg', '0'),
+('Terror', 'https://imagessl2.casadellibro.com/a/l/t5/97/9788418431197.jpg', '0');
 
 -- --------------------------------------------------------
 
@@ -122,8 +122,20 @@ CREATE TABLE `tlibro` (
   `Imagen` text COLLATE utf8_unicode_ci NOT NULL,
   `Borrado` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
--- Indices de la tabla `tfactura`
 --
+
+INSERT INTO `tlibro` (
+    `CodLibro`, `Autor`, `Titulo`, `Genero`, `FechaPublicacion`, 
+    `Paginas`, `Precio`, `Formatouno`, `Formatodos`, `Formatotres`, 
+    `Estado`, `Imagen`, `Borrado`) VALUES 
+('cod001','Miguel de Cervantes', 'Don Quijote de la Mancha', 'Novela Histórica', '1605', '1032', '24.95', 'Tapa Dura', 'N/A', 'N/A', 'Nuevo', 'https://m.media-amazon.com/images/I/51O6-LRPxlL._SY445_SX342_PQ99_.jpg', '0'),
+('cod002', 'George Orwell', '1984', 'Terror', '1949', '328','12.50', 'N/A', 'Tapa Blanda', 'Ebook', 'Segunda mano', 'https://m.media-amazon.com/images/I/41PLDdYs7XL._SY445_SX342_PQ99_.jpg', '0'),
+('cod003', 'J.K. Rowling', 'Harry Potter y la Piedra Filosofal', 'Fantasía', '1997', '256', '18.90', 'Tapa Dura', 'Tapa Blanda', 'Ebook', 'Nuevo', 'https://m.media-amazon.com/images/I/51ZSGn-s9QL._SX342_SY445_PQ99_.jpg', '0'),
+('cod004', 'Gabriel García Márquez', 'Cien años de soledad', 'Fantasía', '1967', '471', '15.00', 'N/A', 'Tapa Blanda', 'N/A', 'Segunda mano', 'https://m.media-amazon.com/images/I/51B+V6AcyQL._SY445_SX342_PQ99_.jpg', '0'),
+('cod005', 'Scott', 'Los Ojos de Plata', 'Terror', '1987', '471', '18.30', 'Tapa Dura', 'N/A', 'Ebook', 'Nuevo', 'https://m.media-amazon.com/images/I/81VTDwvbQSL.jpg', '0');
+
+ALTER TABLE `tfactura`;
+
 ALTER TABLE `tfactura`
   ADD PRIMARY KEY (`CodFactura`),
   ADD KEY `usuario` (`Cliente`);

@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
             modelos[0] = list;
             modelos[1] = control.Obtener(new TGenero().GetType());
 
-            return View(modelos);
+            return View("Consultar",modelos);
         }
 
         public ActionResult VerGeneros()

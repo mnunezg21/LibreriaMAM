@@ -11,7 +11,7 @@
         <div class="modal-body row justify-content-center" id="modal-champions-body">
             @foreach (TLibro libro in Model[0]) {
                 <div id="@libro.CodLibro" class="p-2">
-                    <div><img alt="Portada" src=@libro.Imagen width="200" height="200"></div>
+                    <div><img alt="Portada" src="@libro.Imagen" width="200" height="200"></div>
                     <div class="text-center">@Html.ActionLink(libro.Titulo, "verLibro", "Libro", new { CodLibro = libro.CodLibro }, new { @class = "text-dark" })</div>
                     @{ if (Session["usuario"] != null && ((TUsuario)Session["usuario"]).Rol.Equals("admin")) {
                             <div class="ml-2"><i class="fas fa-edit"></i> @Html.ActionLink("Editar", "modificarLibro", "Libro", new { CodLibro = libro.CodLibro }, null)</div>
